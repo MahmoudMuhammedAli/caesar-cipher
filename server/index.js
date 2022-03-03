@@ -17,6 +17,7 @@ const plainText = fs.readFileSync("./testFiles/input.txt").toString();
 
 // second attempt using string.split
 //? HANDLES ALL CASES`
+let combinedInitials = [];
 plainText.split("\n").forEach(function (line) {
   let name = line;
   let initials = name
@@ -24,4 +25,7 @@ plainText.split("\n").forEach(function (line) {
     .map((word) => word[0])
     .join("");
   console.log(initials);
+  combinedInitials.push(initials);
 });
+combinedInitials = combinedInitials.join("");
+fs.writeFileSync("./testFiles/output.txt", combinedInitials);
