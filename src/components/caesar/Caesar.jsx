@@ -5,6 +5,7 @@ export default function Caesar() {
   const [key, setKey] = useState("");
   const [showNote, setShowNote] = useState(false);
   const [plainText, setPlainText] = useState("");
+  const [textAreaContent, setTextAreaContent] = useState("");
   const [ciphered, setCiphered] = useState("");
   const handleKeyChange = (e) => {
     setKey(e.target.value);
@@ -26,7 +27,7 @@ export default function Caesar() {
     console.log(response.data);
     setShowNote(true);
   };
-  const encrypt = () => {
+  const decrypt = () => {
     let combinedInitials = [];
     plainText.split("\n").forEach(function (line) {
       let name = line;
@@ -40,6 +41,9 @@ export default function Caesar() {
     combinedInitials = combinedInitials.join("");
     setCiphered(combinedInitials);
     console.log("ciphered is", ciphered);
+  };
+  const encrypt = () => {
+    setTextAreaContent(plainText);
   };
   return (
     <div className="bg-gray-900 h-full md:h-screen font-pop">
@@ -148,9 +152,13 @@ export default function Caesar() {
         </div>
       </div>
       <div className="flex justify-center items-center mt-20">
-        <p className="w-11/12 h-32 bg-gray-700 border-2 border-gray-500 text-gray-200 focus:outline-none rounded-xl p-2">
-          {ciphered}
-        </p>
+        <textarea
+          rows={3}
+          onChange={(e) => setTextAreaContent(e.target.value)}
+          disabled
+          value={textAreaContent}
+          className="w-11/12 h-32 bg-gray-700 border-2 border-gray-500 text-gray-200 focus:outline-none rounded-xl p-2"
+        ></textarea>
       </div>
     </div>
   );
