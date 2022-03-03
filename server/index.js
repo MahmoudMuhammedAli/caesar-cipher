@@ -29,3 +29,17 @@ plainText.split("\n").forEach(function (line) {
 });
 combinedInitials = combinedInitials.join("");
 fs.writeFileSync("./testFiles/output.txt", combinedInitials);
+
+
+//? open the output file in the default  program for text files
+function getCommandLine() {
+  switch (process.platform) { 
+     case 'darwin' : return 'open';
+     case 'win32' : return 'start';
+     case 'win64' : return 'start';
+     default : return 'xdg-open';
+  }
+} 
+var exec = require('child_process').exec;
+
+exec(getCommandLine() + ' ' + "./testFiles/output.txt");
