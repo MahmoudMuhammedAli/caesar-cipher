@@ -27,6 +27,13 @@ export default function Caesar() {
     console.log(response.data);
     setShowNote(true);
   };
+  const showDecryptOutputFile = async () => {
+    const response = await axios.post("http://localhost:4242/encrypt", {
+      name: ciphered,
+    });
+    console.log(response.data);
+    setShowNote(true);
+  };
   const decrypt = () => {
     let combinedInitials = [];
     plainText.split("\n").forEach(function (line) {
@@ -138,11 +145,14 @@ export default function Caesar() {
               />
             </div>
             <div className="flex flex-row gap-2 items-center justify-center">
-              <button className="w-36 bg-pink-500 hover:bg-pink-600 text-gray-100 font-bold py-2 px-4 rounded inline-flex items-center justify-center text-center">
+              <button
+                onClick={decrypt}
+                className="w-36 bg-pink-500 hover:bg-pink-600 text-gray-100 font-bold py-2 px-4 rounded inline-flex items-center justify-center text-center"
+              >
                 <span className=" text-center">Decrypt</span>
               </button>
               <button
-                onClick={showOutputFile}
+                onClick={showDecryptOutputFile}
                 className="w-36 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex justify-center items-center"
               >
                 <span className=" text-center">open file</span>
