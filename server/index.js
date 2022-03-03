@@ -21,6 +21,8 @@ let combinedInitials = [];
 plainText.split("\n").forEach(function (line) {
   let name = line;
   let initials = name
+    .replaceAll("\t", "")
+    .replaceAll("\n", "")
     .split(" ")
     .map((word) => (word !== "\n" ? word[0] : ""))
     .join("");

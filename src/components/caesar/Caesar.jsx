@@ -39,8 +39,8 @@ export default function Caesar() {
     plainText.split("\n").forEach(function (line) {
       let name = line;
       let initials = name
-        .replaceAll("\t", "")
-        .replaceAll("\n", "")
+        .replaceAll("\t", " ")
+        .replaceAll("\n", " ")
         .split(" ")
         .map((word) =>
           word !== "\n" &&
@@ -140,7 +140,6 @@ export default function Caesar() {
               <input
                 type="file"
                 className="text-red-500  block w-64 px-3 py-1.5 text-base font-normal  bg-gray-700  bg-clip-padding border border-solid border-gray-500 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                onChange={(e) => showInputFile(e)}
               />
             </div>
 
