@@ -24,12 +24,12 @@ plainText.split("\n").forEach(function (line) {
     .replaceAll("\t", "")
     .replaceAll("\n", "")
     .split(" ")
-    .map((word) => (word !== "\n" ? word[0] : ""))
+    .map((word) => (word[0] ))
     .join("");
   console.log(initials);
   combinedInitials.push(initials);
 });
-combinedInitials = combinedInitials.join("");
+combinedInitials = combinedInitials.join("\n");
 fs.writeFileSync("./testFiles/output.txt", combinedInitials);
 
 //? open the output file in the default  program for text files
