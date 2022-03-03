@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+const axios = require("axios").default;
 
 export default function Caesar() {
   const [key, setKey] = useState("");
@@ -13,12 +14,20 @@ export default function Caesar() {
     reader.onload = async (e) => {
       const text = e.target.result;
       console.log(text);
+      //Send a request to the backend to encrypt the text
+      setPlainText(text);
     };
     reader.readAsText(e.target.files[0]);
   };
-
+  const showOutputFile = async () => {
+    const response = await axios.post("http://localhost:4242/encrypt", {
+      name: plainText,
+    });
+    console.log(response.data);
+    setShowNote(true);
+  };
   return (
-    <div className="bg-gray-900 h-full lg:h-screen font-pop">
+    <div className="bg-gray-900 h-full md:h-screen font-pop">
       <div className="flex justify-center items-center p-5">
         <h1 className="text-4xl font-bold font-pop capitalize text-cyan-400 ">
           caesar cipher
@@ -66,7 +75,8 @@ export default function Caesar() {
               />
             </div>
             <div className="flex flex-row gap-2 items-center justify-center">
-              <button className="w-36 bg-pink-500 hover:bg-pink-600 text-gray-100 font-bold py-2 px-4 rounded inline-flex items-center justify-center text-center">
+              <button onClick={showOutputFile}
+              className="w-36 bg-pink-500 hover:bg-pink-600 text-gray-100 font-bold py-2 px-4 rounded inline-flex items-center justify-center text-center">
                 <span className=" text-center">Encrypt</span>
               </button>
               <button className="w-36 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
