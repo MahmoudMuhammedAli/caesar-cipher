@@ -1,4 +1,4 @@
-john                                                         smith
+john                                                          smith
 greg          tompthon
 jamesjones
 jdas  j     smith

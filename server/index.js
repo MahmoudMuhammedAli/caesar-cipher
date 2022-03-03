@@ -22,7 +22,7 @@ plainText.split("\n").forEach(function (line) {
   let name = line;
   let initials = name
     .split(" ")
-    .map((word) => word[0])
+    .map((word) => (word !== "\n" ? word[0] : ""))
     .join("");
   console.log(initials);
   combinedInitials.push(initials);

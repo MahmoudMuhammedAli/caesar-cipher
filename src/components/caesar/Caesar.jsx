@@ -39,8 +39,18 @@ export default function Caesar() {
     plainText.split("\n").forEach(function (line) {
       let name = line;
       let initials = name
+        .replaceAll("\t", "")
+        .replaceAll("\n", "")
         .split(" ")
-        .map((word) => word[0])
+        .map((word) =>
+          word !== "\n" &&
+          word !== "\t" &&
+          word !== "\r" &&
+          word !== " " &&
+          word !== "$0"
+            ? word[0]
+            : ""
+        )
         .join("");
       console.log(initials);
       combinedInitials.push(initials);
@@ -164,9 +174,8 @@ export default function Caesar() {
       <div className="flex justify-center items-center mt-20">
         <textarea
           rows={3}
-          onChange={(e) => setTextAreaContent(e.target.value)}
-          disabled
-          value={textAreaContent}
+          onChange={(e) => setPlainText(e.target.value)}
+          value={plainText}
           className="w-11/12 h-32 bg-gray-700 border-2 border-gray-500 text-gray-200 focus:outline-none rounded-xl p-2"
         ></textarea>
       </div>
